@@ -11,10 +11,7 @@
   <body>
     <div class = "container">
       <%= render "layouts/flash.messages" %>
-      <% flash.each do |message_type, message| %>
       
-      <%= message %>
-      <% end %>
       <%= yield %>
     </div>
   </body>
