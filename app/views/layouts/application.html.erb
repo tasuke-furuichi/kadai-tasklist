@@ -2,7 +2,12 @@
 <html>
   <head>
     <title>Tasklist</title>
+    
     <%= csrf_meta_tags %>
+    <%if logged_in?%>
+      <p>ログイン中のユーザーid:<%=session[:user_id]%></p>
+    <%end%>
+    
 
    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <%= stylesheet_link_tag  'application', media: 'all', 'data-turbolinks-track': 'reload' %>
@@ -17,5 +22,6 @@
       
       <%= yield %>
     </div>
+    
   </body>
 </html>

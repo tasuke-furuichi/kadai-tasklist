@@ -1,10 +1,12 @@
 class TasksController < ApplicationController
+  before_action:require_user_logged_in,only:[:index,:show, :edit,:create,:new,:destroy,:update]
+  before_action :correct_user, only: [:destroy, :edit, :show, :update]
   def new
     @task = Task.new
   end
 
   def create
-    @task = Task.new(task_params)
+    @task = current_user.tasks.build(task_params)
     if @task.save
       flash[:success]="タスクを作成しました"
       redirect_to @task
@@ -49,4 +51,10 @@ class TasksController < ApplicationController
     params.require(:task).permit(:content,:status)
   end
   
+  def correct_user
+    @task = current_user.tasks.find_by(id: params[:id])
+    unless @task
+      redirect_to root_url
+    end
+  end
 end
