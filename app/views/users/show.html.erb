@@ -1,18 +1,21 @@
 <div>
-  <p>ユーザー名：<%=@user.name%></p>
+  <p>ユーザー名：<%= @user.name %></p>
 </div>
 
-<%if @current_user.tasks.any?%>
+<% if @tasks.any? %>
+
   <ul>
-    <%@current_user.tasks.each do |task| %>
+    <% @tasks.each do |task| %>
       <li>
         <div>
-          <p>ステータス：<%=task.status%></p>
+          <p>ステータス：<%= task.status %></p>
         </div>
         <div>
-          <p>タスク：<%=link_to task.content,task%></p>
+          <p>タスク：<%= link_to task.content,task %></p>
         <div>
       </li>
-    <%end%>
+    <% end %>
   </ul>
-<%end%>
+<% end %>
+
+<%= debug current_user %>
